@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas 动画 - 方块循环移动</title>
+    <style>
+        .canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="200" class="canvas"></canvas>
+<p>
+    <button id="switch">播放</button>
+</p>
+<script>
+    const btnSwitch = document.getElementById('switch');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'purple';
+
+    const targetWidth = 300;
+    const targetHeight = 150;
+    const step = 3;    // 每步的长度，控制移动速度
+    let xPosition = 0; // x坐标
+    const yPosition = (canvas.height - targetHeight) / 2; // y坐标
+    let canPlay = false;
+
+    function move() {
+        if (!canPlay) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空画布
+        xPosition += step;
+        if (xPosition <= canvas.width - targetWidth) {
+            ctx.fillRect(xPosition, yPosition, targetWidth, targetHeight);
+        } else if (xPosition <= canvas.width) {
+            ctx.fillRect(xPosition, yPosition, canvas.width - xPosition, targetHeight);
+            ctx.fillRect(0, yPosition, xPosition + targetWidth - canvas.width, targetHeight);
+        } else {
+            xPosition = 0;
+            ctx.fillRect(xPosition, yPosition, targetWidth, targetHeight);
+        }
+
+        requestAnimationFrame(move);
+    }
+
+    btnSwitch.onclick = () => {
+        canPlay = !canPlay;
+        btnSwitch.innerText = canPlay ? '暂停' : '播放';
+        canPlay && move();
+    };
+</script>
+</body>
+</html>
