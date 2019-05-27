@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Path相关API</title>
+</head>
+<body>
+<canvas id="canvas" width="350" height="250" style="border: 1px solid black;"></canvas>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  ctx.beginPath();
+  ctx.moveTo(100, 10);
+  ctx.lineTo(150, 60);
+  ctx.lineTo(100, 200);
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = '#ff0000';
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(200, 10);
+  ctx.lineTo(250, 60);
+  ctx.lineTo(200, 200);
+  ctx.closePath();
+  ctx.fillStyle = '#0000ff';
+  ctx.fill();
+</script>
+</body>
+</html>

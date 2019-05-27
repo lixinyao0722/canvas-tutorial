@@ -43,6 +43,7 @@
 </div>
 <!-- compose result -->
 <button id="composeBtn">合成</button>
+<button id="animate">动起来</button>
 <!-- javascript -->
 <script>
     const canvas = document.createElement('canvas');
@@ -102,6 +103,14 @@
                 resolve();
             });
         });
+    }
+
+    document.getElementById('animate').addEventListener('click', () => {
+
+    });
+
+    function animate() {
+      ctx.clearRect();
     }
 </script>
 </body>
